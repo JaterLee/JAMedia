@@ -5,124 +5,79 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, {useEffect} from 'react';
 import {
+  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
   useColorScheme,
   View,
 } from 'react-native';
+import {NetCommonUtil} from 'react-native-common-net';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-import Video from 'react-native-video';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {INetResponse} from './src/Model/net';
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [result, setResult] = React.useState<INetResponse>();
 
+  const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const list = React.useMemo(() => {
+    return result?.list;
+  }, [result]);
+
+  useEffect(() => {
+    NetCommonUtil.netGet(
+      'https://www.feisuzyapi.com/api.php/provide/vod/?ac=detail&wd=爱情公寓',
+      {},
+    )
+      .then(res => {
+        setResult(res as INetResponse);
+      })
+      .catch(e => {
+        console.log(111111, e);
+      });
+  }, []);
+
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={{flex: 1}}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-
-        <View style={{flex: 1, height: 300}}>
-          <Video
-            source={{
-              uri: 'https://vip.ffzy-play3.com/20230114/6240_9bc1a121/index.m3u8',
-            }}
-            style={{flex: 1, height: 300}}
-          />
-        </View>
-
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One2">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-        </View>
+        style={{backgroundColor: '#232226', flex: 1}}>
+        <Text style={{fontSize: 30, color: '#FFF'}}>电视剧</Text>
+        {list?.map(item => {
+          console.log(item.vod_pic);
+          return (
+            <View key={item.vod_id} style={{padding: 10}}>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Image
+                  source={{uri: item.vod_pic}}
+                  style={{width: '30%', height: 150, borderRadius: 10}}></Image>
+                <Image
+                  source={{uri: item.vod_pic}}
+                  style={{width: '68%', height: 150, borderRadius: 10}}></Image>
+              </View>
+              <Text style={{fontSize: 20, color: '#FFF'}}>{item.vod_name}</Text>
+              <Text style={{fontSize: 13, color: '#FFF'}}>
+                {item.vod_blurb}
+              </Text>
+            </View>
+          );
+        })}
       </ScrollView>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
