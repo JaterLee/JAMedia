@@ -5,6 +5,8 @@
  * @format
  */
 
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect} from 'react';
 import {
   Image,
@@ -12,6 +14,7 @@ import {
   ScrollView,
   StatusBar,
   Text,
+  TouchableOpacity,
   useColorScheme,
   View,
 } from 'react-native';
@@ -19,8 +22,9 @@ import {NetCommonUtil} from 'react-native-common-net';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {INetResponse} from './src/Model/net';
+import VideoDetail from './src/Pages/VideoDetail';
 
-function App(): JSX.Element {
+function HomeScreen({navigation}) {
   const [result, setResult] = React.useState<INetResponse>();
 
   const isDarkMode = useColorScheme() === 'dark';
@@ -31,6 +35,12 @@ function App(): JSX.Element {
   const list = React.useMemo(() => {
     return result?.list;
   }, [result]);
+
+  const onPress = (id: number) => {
+    navigation.navigate('VideoDetail', {
+      id: id,
+    });
+  };
 
   useEffect(() => {
     NetCommonUtil.netGet(
@@ -58,25 +68,54 @@ function App(): JSX.Element {
         {list?.map(item => {
           console.log(item.vod_pic);
           return (
-            <View key={item.vod_id} style={{padding: 10}}>
+            <TouchableOpacity
+              key={item.vod_id}
+              style={{padding: 10}}
+              onPress={() => {
+                onPress(item.vod_id);
+              }}>
               <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
                 <Image
                   source={{uri: item.vod_pic}}
-                  style={{width: '30%', height: 150, borderRadius: 10}}></Image>
+                  style={{
+                    width: '30%',
+                    height: 150,
+                    borderRadius: 10,
+                  }}></Image>
                 <Image
                   source={{uri: item.vod_pic}}
-                  style={{width: '68%', height: 150, borderRadius: 10}}></Image>
+                  style={{
+                    width: '68%',
+                    height: 150,
+                    borderRadius: 10,
+                  }}></Image>
               </View>
               <Text style={{fontSize: 20, color: '#FFF'}}>{item.vod_name}</Text>
               <Text style={{fontSize: 13, color: '#FFF'}}>
                 {item.vod_blurb}
               </Text>
-            </View>
+            </TouchableOpacity>
           );
         })}
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+function App(): JSX.Element {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="VideoDetail" component={VideoDetail} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
