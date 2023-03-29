@@ -19,13 +19,16 @@ import {
   View,
 } from 'react-native';
 import {NetCommonUtil} from 'react-native-common-net';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {INetResponse} from './src/Model/net';
-import VideoDetail from './src/Pages/VideoDetail';
+import SearchBar from './react/src/common/components/SearchBar';
+import VideoDetail from './react/src/pages/VideoDetail';
+import {INetResponse} from './react/types/net';
 
 function HomeScreen({navigation}) {
   const [result, setResult] = React.useState<INetResponse>();
+  const [keyword, setKeyword] = React.useState('');
 
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
@@ -42,9 +45,11 @@ function HomeScreen({navigation}) {
     });
   };
 
-  useEffect(() => {
+  const fetchListReq = () => {
     NetCommonUtil.netGet(
-      'https://www.feisuzyapi.com/api.php/provide/vod/?ac=detail&wd=爱情公寓',
+      `https://www.feisuzyapi.com/api.php/provide/vod/?ac=detail&wd=${
+        keyword ?? '爱情公寓'
+      }`,
       {},
     )
       .then(res => {
@@ -53,18 +58,46 @@ function HomeScreen({navigation}) {
       .catch(e => {
         console.log(111111, e);
       });
+  };
+
+  useEffect(() => {
+    fetchListReq();
   }, []);
 
+  const {top} = useSafeAreaInsets();
+
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: Colors.darker, paddingTop: top}}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        barStyle={'light-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
+      <SearchBar
+        placeholder="你喜欢什么电影呢?"
+        editable={true}
+        style={{
+          marginHorizontal: 10,
+          backgroundColor: '#FFF',
+        }}
+        onChangeText={text => {
+          setKeyword(text);
+        }}
+        value={keyword}
+        onSubmitEditing={e => {
+          fetchListReq();
+        }}
+      />
+      <Text
+        style={{
+          fontSize: 30,
+          color: '#FFF',
+          backgroundColor: Colors.darker,
+        }}>
+        电视剧
+      </Text>
       <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
+        contentInsetAdjustmentBehavior="never"
         style={{backgroundColor: '#232226', flex: 1}}>
-        <Text style={{fontSize: 30, color: '#FFF'}}>电视剧</Text>
         {list?.map(item => {
           console.log(item.vod_pic);
           return (
@@ -85,14 +118,16 @@ function HomeScreen({navigation}) {
                     width: '30%',
                     height: 150,
                     borderRadius: 10,
-                  }}></Image>
+                  }}
+                />
                 <Image
                   source={{uri: item.vod_pic}}
                   style={{
                     width: '68%',
                     height: 150,
                     borderRadius: 10,
-                  }}></Image>
+                  }}
+                />
               </View>
               <Text style={{fontSize: 20, color: '#FFF'}}>{item.vod_name}</Text>
               <Text style={{fontSize: 13, color: '#FFF'}}>
@@ -102,7 +137,7 @@ function HomeScreen({navigation}) {
           );
         })}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -112,7 +147,11 @@ function App(): JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen name="VideoDetail" component={VideoDetail} />
       </Stack.Navigator>
     </NavigationContainer>
