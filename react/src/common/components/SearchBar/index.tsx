@@ -1,28 +1,14 @@
 import React from 'react';
-import {TextInputFocusEventData} from 'react-native';
-import {TextInputSubmitEditingEventData} from 'react-native';
-import {
-  StyleProp,
-  ViewStyle,
-  Image,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  TextInput,
-  ColorValue,
-  NativeSyntheticEvent,
-} from 'react-native';
-import {toDips} from '../../../Util/PixelUtil';
+import { TextInputFocusEventData } from 'react-native';
+import { TextInputSubmitEditingEventData } from 'react-native';
+import { StyleProp, ViewStyle, Image, Text, TouchableOpacity, StyleSheet, TextInput, ColorValue, NativeSyntheticEvent } from 'react-native';
+import { toDips } from '../../../Util/PixelUtil';
 
 type IProps = {
   value?: string;
   onPress?: () => void;
-  onFocus?:
-    | ((e: NativeSyntheticEvent<TextInputFocusEventData>) => void)
-    | undefined;
-  onBlur?:
-    | ((e: NativeSyntheticEvent<TextInputFocusEventData>) => void)
-    | undefined;
+  onFocus?: ((e: NativeSyntheticEvent<TextInputFocusEventData>) => void) | undefined;
+  onBlur?: ((e: NativeSyntheticEvent<TextInputFocusEventData>) => void) | undefined;
   // onPressClear?: () => void;
   placeholder: string;
   editable: boolean;
@@ -32,32 +18,20 @@ type IProps = {
   onChangeText?: ((text: string) => void) | undefined;
   style?: StyleProp<ViewStyle> | undefined;
   placeholderTextColor?: ColorValue;
-  onSubmitEditing?:
-    | ((e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => void)
-    | undefined;
+  onSubmitEditing?: ((e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => void) | undefined;
   searchIconPosition?: 'left' | 'right';
 };
 
 const SearchBar = (props: IProps) => {
   const [focused, setFocused] = React.useState(false);
-  const {
-    editable,
-    value = '',
-    searchIconPosition,
-    focusBorderColor = '#03bdac',
-    focusBackgroundColor = '#FFF',
-    placeholder = '请输入',
-    placeholderTextColor = '#999',
-  } = props;
+  const { editable, value = '', searchIconPosition, focusBorderColor = '#03bdac', focusBackgroundColor = '#FFF', placeholder = '请输入', placeholderTextColor = '#999' } = props;
   return (
     <TouchableOpacity
       style={[
         styles.contain,
         {
           borderColor: focused ? focusBorderColor : 'transparent',
-          backgroundColor: focused
-            ? focusBackgroundColor
-            : styles.contain.backgroundColor,
+          backgroundColor: focused ? focusBackgroundColor : styles.contain.backgroundColor,
         },
         props.style,
       ]}
@@ -65,12 +39,7 @@ const SearchBar = (props: IProps) => {
       onPress={() => {
         props.onPress && props.onPress();
       }}>
-      {(editable || searchIconPosition === 'left') && (
-        <Image
-          style={styles.iconClear}
-          source={require('/Users/lijunzhuo/Developer/RN/JAMedia/react/assets/img/searchIcon.png')}
-        />
-      )}
+      {(editable || searchIconPosition === 'left') && <Image style={styles.iconClear} source={require('../../../../assets/img/searchIcon.png')} />}
 
       {editable ? (
         <TextInput
@@ -83,10 +52,7 @@ const SearchBar = (props: IProps) => {
             props.onBlur && props.onBlur(e);
             setFocused(false);
           }}
-          style={[
-            styles.content,
-            props.value ? styles.contentText : styles.contentHideText,
-          ]}
+          style={[styles.content, props.value ? styles.contentText : styles.contentHideText]}
           value={value}
           placeholder={placeholder}
           placeholderTextColor={placeholderTextColor ?? undefined}
@@ -138,7 +104,7 @@ const defaultProps: IProps = {
 };
 SearchBar.defaultProps = defaultProps;
 
-export {SearchBar};
+export { SearchBar };
 export default SearchBar;
 
 const styles = StyleSheet.create({

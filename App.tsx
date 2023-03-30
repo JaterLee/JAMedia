@@ -22,6 +22,7 @@ import {NetCommonUtil} from 'react-native-common-net';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+// import {FuncUtil} from 'src/Util/FuncUtil';
 import SearchBar from './react/src/common/components/SearchBar';
 import VideoDetail from './react/src/pages/VideoDetail';
 import {INetResponse} from './react/types/net';
@@ -48,7 +49,7 @@ function HomeScreen({navigation}) {
   const fetchListReq = () => {
     NetCommonUtil.netGet(
       `https://www.feisuzyapi.com/api.php/provide/vod/?ac=detail&wd=${
-        keyword ?? '爱情公寓'
+        keyword ?? ''
       }`,
       {},
     )
@@ -63,6 +64,12 @@ function HomeScreen({navigation}) {
   useEffect(() => {
     fetchListReq();
   }, []);
+
+  useEffect(() => {
+    // FuncUtil.throttle(() => {
+    fetchListReq();
+    // }, 1000);
+  }, [keyword]);
 
   const {top} = useSafeAreaInsets();
 
@@ -84,7 +91,7 @@ function HomeScreen({navigation}) {
         }}
         value={keyword}
         onSubmitEditing={e => {
-          fetchListReq();
+          setKeyword(e.nativeEvent.text);
         }}
       />
       <Text
@@ -98,8 +105,32 @@ function HomeScreen({navigation}) {
       <ScrollView
         contentInsetAdjustmentBehavior="never"
         style={{backgroundColor: '#232226', flex: 1}}>
+        <Text style={{fontSize: 22, color: '#FFF', fontWeight: 'bold'}}>
+          热门
+        </Text>
+
+        <View
+          style={{
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
+            flexDirection: 'row',
+            paddingVertical: 10,
+          }}>
+          {['爱情公寓', '狂飙', '庆余年'].map(title => {
+            return (
+              <TagView
+                title={title}
+                onPress={() => {
+                  setKeyword(title);
+                }}
+              />
+            );
+          })}
+        </View>
+        <Text style={{fontSize: 22, color: '#FFF', fontWeight: 'bold'}}>
+          随机推荐
+        </Text>
         {list?.map(item => {
-          console.log(item.vod_pic);
           return (
             <TouchableOpacity
               key={item.vod_id}
@@ -138,6 +169,29 @@ function HomeScreen({navigation}) {
         })}
       </ScrollView>
     </View>
+  );
+}
+
+type IPropsTagView = {
+  title: string;
+  onPress?: () => void;
+};
+
+function TagView(props: IPropsTagView) {
+  return (
+    <TouchableOpacity
+      style={{
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: '#eee',
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+      onPress={() => props.onPress && props.onPress()}>
+      <Text style={{fontSize: 15, color: 'orange'}}>{props.title}</Text>
+    </TouchableOpacity>
   );
 }
 
