@@ -48,7 +48,7 @@ function HomeScreen({navigation}) {
 
   const fetchListReq = () => {
     NetCommonUtil.netGet(
-      `https://www.feisuzyapi.com/api.php/provide/vod/?ac=detail&wd=${
+      `http://107.174.115.150:5000/api/feisu/search?wd=${
         keyword ?? ''
       }`,
       {},
