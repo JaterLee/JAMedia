@@ -48,9 +48,7 @@ function HomeScreen({navigation}) {
 
   const fetchListReq = () => {
     NetCommonUtil.netGet(
-      `http://107.174.115.150:5000/api/feisu/search?wd=${
-        keyword ?? ''
-      }`,
+      `http://107.174.115.150:5000/api/feisu/search?wd=${keyword ?? ''}`,
       {},
     )
       .then(res => {
@@ -64,12 +62,6 @@ function HomeScreen({navigation}) {
   useEffect(() => {
     fetchListReq();
   }, []);
-
-  useEffect(() => {
-    // FuncUtil.throttle(() => {
-    fetchListReq();
-    // }, 1000);
-  }, [keyword]);
 
   const {top} = useSafeAreaInsets();
 
@@ -91,7 +83,7 @@ function HomeScreen({navigation}) {
         }}
         value={keyword}
         onSubmitEditing={e => {
-          setKeyword(e.nativeEvent.text);
+          fetchListReq();
         }}
       />
       <Text
@@ -200,16 +192,59 @@ const Stack = createNativeStackNavigator();
 function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={option => {
+          return {
+            // statusBarColor: '#FFF',
+            // statusBarTranslucent: true,
+            animationEnabled: false,
+            statusBarStyle: 'light',
+            headerTitleAlign: 'center',
+            animation: 'slide_from_right',
+            // animation: 'default',
+            // animation: 'none',
+            // animationDuration: 300,
+            headerShadowVisible: false, // 标题栏底部的横线
+
+            headerLeft: () => {
+              return <HeaderLeft onPress={() => option.navigation.goBack()} />;
+            },
+
+            // headerStyle: {marginTop: 30, backgroundColor: '#FFF', height: 90},
+            headerBackVisible: false,
+          };
+        }}>
         <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="VideoDetail" component={VideoDetail} />
+        <Stack.Screen
+          name="VideoDetail"
+          component={VideoDetail}
+          options={{
+            headerTransparent: true,
+            headerBackTitleVisible: false,
+            headerTitle: '',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 export default App;
+
+type IPropsBack = {
+  onPress: () => void;
+};
+export function HeaderLeft(props: IPropsBack) {
+  return (
+    <TouchableOpacity onPress={props.onPress}>
+      <Image
+        style={{width: 24, height: 24, resizeMode: 'contain'}}
+        source={require('./react/assets/img/back.png')}
+      />
+    </TouchableOpacity>
+  );
+}

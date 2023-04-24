@@ -11,10 +11,11 @@ import {
   View,
 } from 'react-native';
 import {NetCommonUtil} from 'react-native-common-net';
-import Video from 'react-native-video';
-import VideoPlayer from 'react-native-video-controls';
 import {INetResponse, IVideo} from '../../types/net';
-import {getDeviceWidth} from '../Util/PixelUtil';
+import {getDeviceWidth} from '../util/PixelUtil';
+import Video from 'react-native-video';
+import CommonVideo from './CommonVideo';
+import {ToastUtil} from 'src/util/ToastUtil';
 
 type IVideoPlayUrl = {
   title: string;
@@ -26,9 +27,10 @@ export default (props: NativeStackScreenProps<any>) => {
 
   const [data, setData] = React.useState<IVideo>();
   const [currentUrl, setCurrentUrl] = React.useState<string>();
+  const [currentIndex, setCurrentIndex] = React.useState(0);
   const [paused, setPaused] = React.useState(true);
 
-  const refVideoPlayer = React.useRef<VideoPlayer>();
+  // const refVideoPlayer = React.useRef<VideoPlayer>();
 
   const vod_play_url_list = React.useMemo(() => {
     const array = data?.vod_play_url.split('$$$')[1].split('#');
@@ -56,15 +58,13 @@ export default (props: NativeStackScreenProps<any>) => {
     });
   }, []);
 
-  React.useEffect(() => {
-    setPaused(true);
-  }, [currentUrl]);
+  React.useEffect(() => {}, [currentUrl]);
 
   return (
     <View style={{flex: 1}}>
-      <VideoPlayer
+      <CommonVideo
         key={currentUrl ?? '' + 111}
-        ref={refVideoPlayer}
+        // ref={refVideoPlayer}
         style={{width: '100%', height: 300, backgroundColor: '#000'}}
         source={{
           uri: currentUrl ?? '',
@@ -76,10 +76,19 @@ export default (props: NativeStackScreenProps<any>) => {
           setPaused(false);
           console.log('Video loaded!');
         }}
+        onEnd={() => {
+          const nextIndex = currentIndex + 1;
+          if (nextIndex >= vod_play_url_list?.length!) {
+            return;
+          }
+          // ToastUtil.show('自动播放下一集');
+          setTimeout(() => {
+            setCurrentUrl(vod_play_url_list![nextIndex].videoUrl);
+          }, 2000);
+        }}
         // onProgress={() => console.log('Video progress')}
         onError={(error: any) => console.error('Error loading video:', error)}
       />
-
       <ScrollView style={{flex: 1}}>
         <View style={styles.tagListContain}>
           {vod_play_url_list?.map(v => {

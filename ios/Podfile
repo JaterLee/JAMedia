@@ -2,6 +2,8 @@ require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 platform :ios, min_ios_version_supported
+install! 'cocoapods', :deterministic_uuids => false
+
 prepare_react_native_project!
 
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
@@ -26,6 +28,11 @@ target 'JAMedia' do
 
   # Flags change depending on the env values.
   flags = get_default_flags()
+  
+  pod 'ZFPlayer',           '4.1.4'
+  pod 'ZFPlayer/ControlView', '4.1.4'
+  pod 'ZFPlayer/AVPlayer',  '4.1.4'
+  pod 'Masonry',            "1.1.0"
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -49,6 +56,17 @@ target 'JAMedia' do
   end
 
   post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            # Exclude debug architectures for iOS simulator builds on ARM Macs
+            config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] ||= []
+            config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] << 'arm64'
+            config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
+            config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
+            config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
+            config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
+        end
+    end
     react_native_post_install(
       installer,
       # Set `mac_catalyst_enabled` to `true` in order to apply patches

@@ -14,6 +14,16 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-JAMedia-JAMediaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-JAMedia-JAMediaTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		A92279F329F6259800999E60 /* MJVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92279DD29F6259800999E60 /* MJVideoPlayer.swift */; };
+		A92279F429F6259800999E60 /* RNTJAVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A92279DF29F6259800999E60 /* RNTJAVideoView.m */; };
+		A92279F529F6259800999E60 /* RNTJAVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A92279E229F6259800999E60 /* RNTJAVideoManager.m */; };
+		A92279F629F6259800999E60 /* UIDevice+LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A92279E629F6259800999E60 /* UIDevice+LCActionSheet.m */; };
+		A92279F729F6259800999E60 /* LCActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A92279E929F6259800999E60 /* LCActionSheetViewController.m */; };
+		A92279F829F6259800999E60 /* LCActionSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A92279EA29F6259800999E60 /* LCActionSheetCell.m */; };
+		A92279F929F6259800999E60 /* UIImage+LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A92279EB29F6259800999E60 /* UIImage+LCActionSheet.m */; };
+		A92279FA29F6259800999E60 /* LCActionSheetConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A92279EC29F6259800999E60 /* LCActionSheetConfig.m */; };
+		A92279FB29F6259800999E60 /* LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A92279ED29F6259800999E60 /* LCActionSheet.m */; };
+		A92279FC29F6259800999E60 /* MediaMoudle.m in Sources */ = {isa = PBXBuildFile; fileRef = A92279F229F6259800999E60 /* MediaMoudle.m */; };
 		A928507729D674F1005D8F71 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = A928507629D674F1005D8F71 /* main.jsbundle */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +54,26 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-JAMedia.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JAMedia.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = JAMedia/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-JAMedia-JAMediaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JAMedia-JAMediaTests.release.xcconfig"; path = "Target Support Files/Pods-JAMedia-JAMediaTests/Pods-JAMedia-JAMediaTests.release.xcconfig"; sourceTree = "<group>"; };
+		A92279DD29F6259800999E60 /* MJVideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJVideoPlayer.swift; sourceTree = "<group>"; };
+		A92279DF29F6259800999E60 /* RNTJAVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTJAVideoView.m; sourceTree = "<group>"; };
+		A92279E029F6259800999E60 /* RNTJAVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTJAVideoManager.h; sourceTree = "<group>"; };
+		A92279E129F6259800999E60 /* RNTJAVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTJAVideoView.h; sourceTree = "<group>"; };
+		A92279E229F6259800999E60 /* RNTJAVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTJAVideoManager.m; sourceTree = "<group>"; };
+		A92279E329F6259800999E60 /* JAMeida-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JAMeida-Bridging-Header.h"; path = "JAMedia/JAMeida-Bridging-Header.h"; sourceTree = "<group>"; };
+		A92279E429F6259800999E60 /* MediaMoudle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MediaMoudle.h; path = JAMedia/MediaMoudle.h; sourceTree = "<group>"; };
+		A92279E629F6259800999E60 /* UIDevice+LCActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LCActionSheet.m"; sourceTree = "<group>"; };
+		A92279E729F6259800999E60 /* LCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCActionSheet.h; sourceTree = "<group>"; };
+		A92279E829F6259800999E60 /* LCActionSheetConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCActionSheetConfig.h; sourceTree = "<group>"; };
+		A92279E929F6259800999E60 /* LCActionSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCActionSheetViewController.m; sourceTree = "<group>"; };
+		A92279EA29F6259800999E60 /* LCActionSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCActionSheetCell.m; sourceTree = "<group>"; };
+		A92279EB29F6259800999E60 /* UIImage+LCActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LCActionSheet.m"; sourceTree = "<group>"; };
+		A92279EC29F6259800999E60 /* LCActionSheetConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCActionSheetConfig.m; sourceTree = "<group>"; };
+		A92279ED29F6259800999E60 /* LCActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCActionSheet.m; sourceTree = "<group>"; };
+		A92279EE29F6259800999E60 /* UIDevice+LCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LCActionSheet.h"; sourceTree = "<group>"; };
+		A92279EF29F6259800999E60 /* LCActionSheetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCActionSheetCell.h; sourceTree = "<group>"; };
+		A92279F029F6259800999E60 /* LCActionSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCActionSheetViewController.h; sourceTree = "<group>"; };
+		A92279F129F6259800999E60 /* UIImage+LCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LCActionSheet.h"; sourceTree = "<group>"; };
+		A92279F229F6259800999E60 /* MediaMoudle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MediaMoudle.m; path = JAMedia/MediaMoudle.m; sourceTree = "<group>"; };
 		A928507629D674F1005D8F71 /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; name = main.jsbundle; path = ../jsbundle/main.jsbundle; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -88,6 +118,12 @@
 		13B07FAE1A68108700A75B9A /* JAMedia */ = {
 			isa = PBXGroup;
 			children = (
+				A92279E329F6259800999E60 /* JAMeida-Bridging-Header.h */,
+				A92279E529F6259800999E60 /* LCActionSheet */,
+				A92279E429F6259800999E60 /* MediaMoudle.h */,
+				A92279F229F6259800999E60 /* MediaMoudle.m */,
+				A92279DC29F6259800999E60 /* MJVideoPlayer */,
+				A92279DE29F6259800999E60 /* RNTJAVideoManager */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -138,6 +174,47 @@
 				00E356EE1AD99517003FC87E /* JAMediaTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A92279DC29F6259800999E60 /* MJVideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				A92279DD29F6259800999E60 /* MJVideoPlayer.swift */,
+			);
+			name = MJVideoPlayer;
+			path = JAMedia/MJVideoPlayer;
+			sourceTree = "<group>";
+		};
+		A92279DE29F6259800999E60 /* RNTJAVideoManager */ = {
+			isa = PBXGroup;
+			children = (
+				A92279DF29F6259800999E60 /* RNTJAVideoView.m */,
+				A92279E029F6259800999E60 /* RNTJAVideoManager.h */,
+				A92279E129F6259800999E60 /* RNTJAVideoView.h */,
+				A92279E229F6259800999E60 /* RNTJAVideoManager.m */,
+			);
+			name = RNTJAVideoManager;
+			path = JAMedia/RNTJAVideoManager;
+			sourceTree = "<group>";
+		};
+		A92279E529F6259800999E60 /* LCActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				A92279E629F6259800999E60 /* UIDevice+LCActionSheet.m */,
+				A92279E729F6259800999E60 /* LCActionSheet.h */,
+				A92279E829F6259800999E60 /* LCActionSheetConfig.h */,
+				A92279E929F6259800999E60 /* LCActionSheetViewController.m */,
+				A92279EA29F6259800999E60 /* LCActionSheetCell.m */,
+				A92279EB29F6259800999E60 /* UIImage+LCActionSheet.m */,
+				A92279EC29F6259800999E60 /* LCActionSheetConfig.m */,
+				A92279ED29F6259800999E60 /* LCActionSheet.m */,
+				A92279EE29F6259800999E60 /* UIDevice+LCActionSheet.h */,
+				A92279EF29F6259800999E60 /* LCActionSheetCell.h */,
+				A92279F029F6259800999E60 /* LCActionSheetViewController.h */,
+				A92279F129F6259800999E60 /* UIImage+LCActionSheet.h */,
+			);
+			name = LCActionSheet;
+			path = JAMedia/LCActionSheet;
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -416,8 +493,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A92279F929F6259800999E60 /* UIImage+LCActionSheet.m in Sources */,
+				A92279FB29F6259800999E60 /* LCActionSheet.m in Sources */,
+				A92279F729F6259800999E60 /* LCActionSheetViewController.m in Sources */,
+				A92279F429F6259800999E60 /* RNTJAVideoView.m in Sources */,
+				A92279F329F6259800999E60 /* MJVideoPlayer.swift in Sources */,
+				A92279FA29F6259800999E60 /* LCActionSheetConfig.m in Sources */,
+				A92279FC29F6259800999E60 /* MediaMoudle.m in Sources */,
+				A92279F629F6259800999E60 /* UIDevice+LCActionSheet.m in Sources */,
+				A92279F829F6259800999E60 /* LCActionSheetCell.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				A92279F529F6259800999E60 /* RNTJAVideoManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +523,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-JAMedia-JAMediaTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -463,6 +551,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-JAMedia-JAMediaTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = JAMediaTests/Info.plist;
@@ -489,8 +578,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PT65KXU684;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = B5VGAX87K6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = JAMedia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -503,8 +595,11 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.media.ja;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mallee.mjzd;
 				PRODUCT_NAME = JAMedia;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = dev_mjzd_2023;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/JAMedia/JAMeida-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -517,6 +612,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PT65KXU684;
 				INFOPLIST_FILE = JAMedia/Info.plist;
@@ -530,8 +627,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.media.ja;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ja.media;
 				PRODUCT_NAME = JAMedia;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/JAMedia/JAMeida-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
