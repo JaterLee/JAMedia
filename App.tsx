@@ -30,6 +30,7 @@ import {INetResponse} from './react/types/net';
 function HomeScreen({navigation}) {
   const [result, setResult] = React.useState<INetResponse>();
   const [keyword, setKeyword] = React.useState('');
+  const [isRecomment, setIsRecomment] = React.useState(false);
 
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
@@ -62,6 +63,13 @@ function HomeScreen({navigation}) {
   useEffect(() => {
     fetchListReq();
   }, []);
+
+  React.useEffect(() => {
+    if (isRecomment) {
+      fetchListReq();
+      setIsRecomment(false);
+    }
+  }, [keyword]);
 
   const {top} = useSafeAreaInsets();
 
@@ -111,8 +119,10 @@ function HomeScreen({navigation}) {
           {['爱情公寓', '狂飙', '庆余年'].map(title => {
             return (
               <TagView
+                key={title}
                 title={title}
                 onPress={() => {
+                  setIsRecomment(true);
                   setKeyword(title);
                 }}
               />
@@ -175,14 +185,14 @@ function TagView(props: IPropsTagView) {
       style={{
         height: 30,
         borderRadius: 15,
-        backgroundColor: '#eee',
+        backgroundColor: '#85a5ff3D',
         paddingHorizontal: 15,
         paddingVertical: 5,
         alignItems: 'center',
         justifyContent: 'center',
       }}
       onPress={() => props.onPress && props.onPress()}>
-      <Text style={{fontSize: 15, color: 'orange'}}>{props.title}</Text>
+      <Text style={{fontSize: 15, color: '#85a5ff'}}>{props.title}</Text>
     </TouchableOpacity>
   );
 }

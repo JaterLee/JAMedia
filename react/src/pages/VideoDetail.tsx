@@ -15,7 +15,7 @@ import {INetResponse, IVideo} from '../../types/net';
 import {getDeviceWidth} from '../util/PixelUtil';
 import Video from 'react-native-video';
 import CommonVideo from './CommonVideo';
-import {ToastUtil} from 'src/util/ToastUtil';
+import {ToastUtil} from '../../src/util/ToastUtil';
 
 type IVideoPlayUrl = {
   title: string;
@@ -81,7 +81,7 @@ export default (props: NativeStackScreenProps<any>) => {
           if (nextIndex >= vod_play_url_list?.length!) {
             return;
           }
-          // ToastUtil.show('自动播放下一集');
+          ToastUtil.show('自动播放下一集');
           setTimeout(() => {
             setCurrentUrl(vod_play_url_list![nextIndex].videoUrl);
           }, 2000);
